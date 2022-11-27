@@ -1,6 +1,21 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import { productReducer } from '../reducers/productReducer';
+import {
+  GET_PRODUCTS_BEGIN,
+  GET_PRODUCTS_SUCCESS,
+  GET_PRODUCTS_ERROR,
+  GET_SINGLE_PRODUCT_BEGIN,
+  GET_SINGLE_PRODUCT_SUCCESS,
+  GET_SINGLE_PRODUCT_ERROR,
+  UPDATE_FILTERS,
+  CART_ITEMS,
+  LOAD_PRODUCTS,
+  FILTER_PRODUCTS,
+  CLEAR_FILTERS,
+  API_URL,
+  API_URL_CART,
+} from '../utils/action.js';
 const initialState = {
   isLoading_products: false,
   products_error: false,
