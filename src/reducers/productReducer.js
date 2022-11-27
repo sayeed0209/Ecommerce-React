@@ -75,6 +75,9 @@ export const productReducer = (state, action) => {
 
     case CLEAR_FILTERS:
       return { ...state, searchTerm: '' };
+
+    case CART_ITEMS:
+      return { ...state, cart_items: [...state.cart_items, action.payload] };
     default:
       return state;
     // throw new Error(`No Matching "${action.type}" - action type`);

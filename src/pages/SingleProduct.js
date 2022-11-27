@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Error from '../components/Error';
 import { API_URL } from '../utils/action.js';
+import AddToCart from '../components/AddToCart';
 const SingleProduct = () => {
   const {
     fetchSingleProducts,
@@ -89,7 +90,7 @@ const SingleProduct = () => {
               {weight} GM
             </p>
             <hr />
-            <button>Add to Cart</button>
+            <AddToCart product={product} />
           </section>
         </div>
       </div>
