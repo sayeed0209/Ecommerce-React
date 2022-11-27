@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
-
+import { getCartItems } from '../utils/helper';
 import { productReducer } from '../reducers/productReducer';
 import {
   GET_PRODUCTS_BEGIN,
@@ -26,7 +26,7 @@ const initialState = {
   single_products_error: false,
   single_products_data: {},
   searchTerm: '',
-  cart_items: [],
+  cart_items: getCartItems(),
 };
 
 const ProductsContext = React.createContext();
