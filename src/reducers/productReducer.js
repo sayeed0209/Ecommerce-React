@@ -18,32 +18,57 @@ export const productReducer = (state, action) => {
     // * all products case starts here
     case GET_PRODUCTS_BEGIN:
       return { ...state, isLoading_products: true };
+
     case GET_PRODUCTS_SUCCESS:
       return {
         ...state,
         products_data: action.payload,
         isLoading_products: false,
       };
+
     case GET_PRODUCTS_ERROR:
       return { ...state, isLoading_products: false, products_error: true };
     // * all products case end here
 
     // * Single product case starts here
+
     case GET_SINGLE_PRODUCT_BEGIN:
       return { ...state, single_products_loading: true };
+
     case GET_SINGLE_PRODUCT_SUCCESS:
       return {
         ...state,
         single_products_loading: false,
         single_products_data: action.payload,
       };
+
     case GET_SINGLE_PRODUCT_ERROR:
       return {
         ...state,
         single_products_loading: false,
         single_products_error: true,
       };
+
     // * Single product case ends here
+
+    // * Loading products and  Filter products case starts here
+
+    case LOAD_PRODUCTS:
+      return { ...state, filtered_products: [...action.payload] };
+
+    case UPDATE_FILTERS:
+      const { name, value } = action.payload;
+      return { ...state, [name]: value };
+
+    case FILTER_PRODUCTS:
+      const { products_data, searchTerm } = state;
+      let tempProduct = [...products_data];
+      if (searchTerm) {
+        tempProduct = tempProduct.filter((product) => {
+          return product.model.toLowerCase().includes(searchTerm);
+        });
+      }
+      return { ...state, filtered_products: tempProduct };
     default:
       return state;
     // throw new Error(`No Matching "${action.type}" - action type`);

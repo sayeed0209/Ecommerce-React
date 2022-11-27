@@ -7,7 +7,7 @@ const ProductsList = () => {
   const {
     isLoading_products: loading,
     products_error: error,
-    products_data: products,
+    filtered_products: products,
   } = useProductContext();
   if (loading) {
     return <LoadingSpinner />;

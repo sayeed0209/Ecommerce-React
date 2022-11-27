@@ -52,15 +52,28 @@ export const ProductsProvider = ({ children }) => {
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
     }
   };
-
+  //   !HANDLE FILTER
+  const handleFilter = (e) => {
+    const { name, value } = e.target;
+    dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
+  };
   useEffect(() => {
     fetchProducts(API_URL);
   }, []);
+
+  useEffect(() => {
+    dispatch({ type: LOAD_PRODUCTS, payload: state.products_data });
+  }, [state.products_data]);
+
+  useEffect(() => {
+    dispatch({ type: FILTER_PRODUCTS });
+  }, [state.searchTerm, state.products_data]);
   return (
     <ProductsContext.Provider
       value={{
         ...state,
         fetchSingleProducts,
+        handleFilter,
       }}
     >
       {children}
