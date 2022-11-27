@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
+
 import { productReducer } from '../reducers/productReducer';
 import {
   GET_PRODUCTS_BEGIN,
@@ -27,6 +28,7 @@ const initialState = {
   searchTerm: '',
   cart_items: [],
 };
+
 const ProductsContext = React.createContext();
 export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
@@ -72,6 +74,34 @@ export const ProductsProvider = ({ children }) => {
   useEffect(() => {
     dispatch({ type: FILTER_PRODUCTS });
   }, [state.searchTerm, state.products_data]);
+
+  const cartHandler = (id, selectedColor, selectedStorage) => {
+    fetch(API_URL_CART, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: id,
+        colorCode: selectedColor,
+        storageCode: selectedStorage,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.count === 1) {
+          dispatch({
+            type: CART_ITEMS,
+            payload: {
+              id: id,
+              colorCode: selectedColor,
+              storageCode: selectedStorage,
+            },
+          });
+        }
+      });
+  };
+
   return (
     <ProductsContext.Provider
       value={{
@@ -79,6 +109,7 @@ export const ProductsProvider = ({ children }) => {
         fetchSingleProducts,
         handleFilter,
         clearFilter,
+        cartHandler,
       }}
     >
       {children}
