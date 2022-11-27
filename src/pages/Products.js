@@ -6,7 +6,7 @@ const Products = () => {
   return (
     <>
       <HeroPage />
-      <section className="container">
+      <section className="container mb-5">
         <Filters />
         <ProductsList />
       </section>

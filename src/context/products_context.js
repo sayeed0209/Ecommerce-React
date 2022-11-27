@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import { getCartItems } from '../utils/helper';
 import { productReducer } from '../reducers/productReducer';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import {
   GET_PRODUCTS_BEGIN,
   GET_PRODUCTS_SUCCESS,
@@ -28,7 +30,7 @@ const initialState = {
   searchTerm: '',
   cart_items: getCartItems(),
 };
-
+const MySwal = withReactContent(Swal);
 const ProductsContext = React.createContext();
 export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
@@ -90,6 +92,11 @@ export const ProductsProvider = ({ children }) => {
       .then((res) => res.json())
       .then((result) => {
         if (result.count === 1) {
+          MySwal.fire({
+            title: <strong>Great job!</strong>,
+            html: <i>Item Added to the cart!</i>,
+            icon: 'success',
+          });
           dispatch({
             type: CART_ITEMS,
             payload: {

@@ -2,7 +2,7 @@ import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import logo from '../assets/img/magic-mobile.jpg';
+import logo from '../assets/img/magic-mobile.png';
 import { useProductContext } from '../context/products_context';
 const Navbar = () => {
   const { cart_items } = useProductContext();
@@ -26,6 +26,7 @@ const Wrapper = styled.nav`
     display: flex;
     align-items: center;
     position: relative;
+    margin-right: 1rem;
 
     svg {
       height: 1.9rem;
