@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useProductContext } from '../context/products_context';
+import CartColors from './CartColors';
+import CartStorage from './CartStorage';
 const AddToCart = ({ product }) => {
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedStorage, setSelectedStorage] = useState('');
@@ -31,8 +33,15 @@ const AddToCart = ({ product }) => {
         {colors.map((color, idx) => {
           return (
             <div key={idx}>
-              {color.name}
-              {color.code}
+              <CartColors
+                color={color}
+                selectedColor={selectedColor}
+                onClick={() => {
+                  if (colors.length > 1 && color.code !== selectedColor) {
+                    setSelectedColor(color.code);
+                  }
+                }}
+              />
             </div>
           );
         })}
@@ -42,8 +51,16 @@ const AddToCart = ({ product }) => {
         {storage.map((space, i) => {
           return (
             <div key={i} className="d-flex align-items-center">
-              {space.name}
-              {space.code}
+              <CartStorage
+                space={space}
+                selectedStorage={selectedStorage}
+                name={space.name}
+                onClick={() => {
+                  if (storage.length > 1 && space.code !== selectedStorage) {
+                    setSelectedStorage(space.code);
+                  }
+                }}
+              />
             </div>
           );
         })}
