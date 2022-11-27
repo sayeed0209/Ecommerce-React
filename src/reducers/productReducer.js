@@ -10,9 +10,8 @@ import {
   LOAD_PRODUCTS,
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
-  API_URL,
-  API_URL_CART,
 } from '../utils/action.js';
+import { createCookie } from '../utils/helper';
 export const productReducer = (state, action) => {
   switch (action.type) {
     // * all products case starts here
@@ -77,6 +76,11 @@ export const productReducer = (state, action) => {
       return { ...state, searchTerm: '' };
 
     case CART_ITEMS:
+      createCookie(
+        'cart',
+        JSON.stringify([...state.cart_items, action.payload]),
+        60
+      );
       return { ...state, cart_items: [...state.cart_items, action.payload] };
     default:
       return state;
