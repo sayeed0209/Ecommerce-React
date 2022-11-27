@@ -15,3 +15,11 @@ export function createCookie(name, value, minutes) {
 
   document.cookie = name + '=' + value + expires;
 }
+export const getCartItems = () => {
+  let cartItems = document.cookie.split('=');
+  if (cartItems[0].length === 0) {
+    return [];
+  } else {
+    return JSON.parse(cartItems[1]);
+  }
+};
