@@ -30,6 +30,20 @@ const initialState = {
 const ProductsContext = React.createContext();
 export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
+  //   !All PRODUCTS
+  const fetchProducts = async (url) => {
+    dispatch({ type: GET_PRODUCTS_BEGIN });
+    try {
+      const response = await axios(url);
+      const { data } = await response;
+      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: GET_PRODUCTS_ERROR });
+    }
+  };
+  useEffect(() => {
+    fetchProducts(API_URL);
+  }, []);
   return (
     <ProductsContext.Provider
       value={{
