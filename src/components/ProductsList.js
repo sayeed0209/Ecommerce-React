@@ -7,7 +7,7 @@ const ProductsList = () => {
   const {
     isLoading_products: loading,
     products_error: error,
-    filtered_products: products,
+    products_data: products,
   } = useProductContext();
   if (loading) {
     return <LoadingSpinner />;
@@ -15,6 +15,7 @@ const ProductsList = () => {
   if (error) {
     return <Error />;
   }
+  console.log(products);
   return (
     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-3">
       {products.map((product) => {
