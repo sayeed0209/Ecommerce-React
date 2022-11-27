@@ -60,11 +60,18 @@ export const productReducer = (state, action) => {
       return { ...state, [name]: value };
 
     case FILTER_PRODUCTS:
-      const { products_data, searchTerm } = state;
+      const { products_data, searchTerm, searchParam } = state;
       let tempProduct = [...products_data];
       if (searchTerm) {
         tempProduct = tempProduct.filter((product) => {
-          return product.model.toLowerCase().includes(searchTerm);
+          return searchParam.some((newItem) => {
+            return (
+              product[newItem]
+                .toString()
+                .toLowerCase()
+                .indexOf(searchTerm.toLowerCase()) > -1
+            );
+          });
         });
       }
       return { ...state, filtered_products: tempProduct };

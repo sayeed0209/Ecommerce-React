@@ -28,6 +28,7 @@ const initialState = {
   single_products_error: false,
   single_products_data: {},
   searchTerm: '',
+  searchParam: ['brand', 'model', 'price'],
   cart_items: getCartItems(),
 };
 const MySwal = withReactContent(Swal);
