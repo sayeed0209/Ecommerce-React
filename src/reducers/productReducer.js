@@ -27,6 +27,23 @@ export const productReducer = (state, action) => {
     case GET_PRODUCTS_ERROR:
       return { ...state, isLoading_products: false, products_error: true };
     // * all products case end here
+
+    // * Single product case starts here
+    case GET_SINGLE_PRODUCT_BEGIN:
+      return { ...state, single_products_loading: true };
+    case GET_SINGLE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        single_products_loading: false,
+        single_products_data: action.payload,
+      };
+    case GET_SINGLE_PRODUCT_ERROR:
+      return {
+        ...state,
+        single_products_loading: false,
+        single_products_error: true,
+      };
+    // * Single product case ends here
     default:
       return state;
     // throw new Error(`No Matching "${action.type}" - action type`);

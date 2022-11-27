@@ -41,6 +41,18 @@ export const ProductsProvider = ({ children }) => {
       dispatch({ type: GET_PRODUCTS_ERROR });
     }
   };
+
+  //   !SINGLE PRODUCTS
+  const fetchSingleProducts = async (url) => {
+    dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
+    try {
+      const response = await axios(url);
+      dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
+    }
+  };
+
   useEffect(() => {
     fetchProducts(API_URL);
   }, []);
@@ -48,6 +60,7 @@ export const ProductsProvider = ({ children }) => {
     <ProductsContext.Provider
       value={{
         ...state,
+        fetchSingleProducts,
       }}
     >
       {children}
