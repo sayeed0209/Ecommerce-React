@@ -13,4 +13,22 @@ import {
   API_URL,
   API_URL_CART,
 } from '../utils/action.js';
-export const productReducer = (state, action) => {};
+export const productReducer = (state, action) => {
+  switch (action.type) {
+    // * all products case starts here
+    case GET_PRODUCTS_BEGIN:
+      return { ...state, isLoading_products: true };
+    case GET_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        products_data: action.payload,
+        isLoading_products: false,
+      };
+    case GET_PRODUCTS_ERROR:
+      return { ...state, isLoading_products: false, products_error: true };
+    // * all products case end here
+    default:
+      return state;
+    // throw new Error(`No Matching "${action.type}" - action type`);
+  }
+};
