@@ -57,6 +57,10 @@ export const ProductsProvider = ({ children }) => {
     const { name, value } = e.target;
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
+  //   !CLEAR FILTER
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTERS });
+  };
   useEffect(() => {
     fetchProducts(API_URL);
   }, []);
@@ -74,6 +78,7 @@ export const ProductsProvider = ({ children }) => {
         ...state,
         fetchSingleProducts,
         handleFilter,
+        clearFilter,
       }}
     >
       {children}

@@ -69,6 +69,12 @@ export const productReducer = (state, action) => {
         });
       }
       return { ...state, filtered_products: tempProduct };
+    // * Loading products and  Filter products case ends here
+
+    // * Clear filter
+
+    case CLEAR_FILTERS:
+      return { ...state, searchTerm: '' };
     default:
       return state;
     // throw new Error(`No Matching "${action.type}" - action type`);
