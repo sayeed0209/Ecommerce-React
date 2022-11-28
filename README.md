@@ -21,6 +21,7 @@ The project was developed in conjunction with React.js, including Context, Hooks
 - Axios
 - External API
 - Swal Alert
+- style components 
 
 ### Getting started
 
