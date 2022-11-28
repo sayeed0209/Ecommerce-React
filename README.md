@@ -27,7 +27,7 @@ The project was developed in conjunction with React.js, including Context, Hooks
 ---
 
 - fork the project and clone it locally.
-- In the project directory, ou can follow the steps below to download the dependencies:
+- In the project directory, you can follow the steps below to download the dependencies:
 
   `npm install `
 
