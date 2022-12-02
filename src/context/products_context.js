@@ -128,7 +128,6 @@ export const ProductsProvider = ({ children }) => {
         handleFilter,
         clearFilter,
         cartHandler,
-        fetchProducts,
       }}
     >
       {children}

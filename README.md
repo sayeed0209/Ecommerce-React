@@ -21,7 +21,7 @@ The project was developed in conjunction with React.js, including Context, Hooks
 - Axios
 - External API
 - Swal Alert
-- style components 
+- styled components
 
 ### Getting started
 
@@ -49,7 +49,7 @@ You can list the products by their model, brand, price, additionally you can cle
 - [x] Fetching product data, search products and product detail page.
 - [x] Add to cart.
 - [x] Responsive Design.
-- [ ] Add to cart and cart page.
+- [ ] cart page.
 - [ ] Complete the sign in and sign up process.
 - [ ] Create order page.
 - [ ] Add to favorites and favorites page.
