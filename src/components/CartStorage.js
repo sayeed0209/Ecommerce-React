@@ -1,5 +1,5 @@
-import React from 'react';
-import { FaCircle, FaCheckCircle } from 'react-icons/fa';
+import React from "react";
+import { FaCircle, FaCheckCircle } from "react-icons/fa";
 const CartStorage = ({ space, selectedStorage, onClick }) => {
   return (
     <>

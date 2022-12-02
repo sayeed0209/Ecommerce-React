@@ -1,5 +1,5 @@
-import React from 'react';
-import { useProductContext } from '../context/products_context';
+import React from "react";
+import { useProductContext } from "../context/products_context";
 const Filters = () => {
   const { handleFilter, searchTerm, clearFilter } = useProductContext();
   return (

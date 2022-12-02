@@ -1,11 +1,12 @@
-import React from 'react';
-import { FaShoppingCart } from 'react-icons/fa';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import logo from '../assets/img/magic-mobile.png';
-import { useProductContext } from '../context/products_context';
+import React from "react";
+import { FaShoppingCart } from "react-icons/fa";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import logo from "../assets/img/magic-mobile.png";
+import { useProductContext } from "../context/products_context";
 const Navbar = () => {
-  const { cart_items } = useProductContext();
+  const { cart_items_amount } = useProductContext();
+
   return (
     <Wrapper className="navbar navbar-light bg-light bg-gradient py-3 shadow-sm sticky-top">
       <div className="container">
@@ -14,7 +15,9 @@ const Navbar = () => {
         </Link>
         <div className="cart-container">
           <FaShoppingCart />
-          <span className="cart-value">{cart_items && cart_items.length}</span>
+          <span className="cart-value" id="cart-value">
+            {cart_items_amount}
+          </span>
         </div>
       </div>
     </Wrapper>

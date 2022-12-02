@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const LoadingSpinner = () => {
   return (
@@ -6,7 +6,7 @@ const LoadingSpinner = () => {
       <div
         className="spinner-border text-success"
         role="status"
-        style={{ width: '5rem', height: '5rem' }}
+        style={{ width: "5rem", height: "5rem" }}
       >
         <span className="visually-hidden">Loading...</span>
       </div>
