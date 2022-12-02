@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="6" failures="0" errors="0" time="20.405">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2022-12-02T09:47:50" time="7.544" tests="3">
+    <testcase classname=" GET_PRODUCTS_BEGIN" name=" GET_PRODUCTS_BEGIN" time="0.005">
+    </testcase>
+    <testcase classname=" GET_PRODUCTS_SUCCESS" name=" GET_PRODUCTS_SUCCESS" time="0.003">
+    </testcase>
+    <testcase classname=" GET_PRODUCTS_ERROR" name=" GET_PRODUCTS_ERROR" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2022-12-02T09:47:50" time="7.756" tests="3">
+    <testcase classname=" GET_PRODUCTS_BEGIN" name=" GET_PRODUCTS_BEGIN" time="0.008">
+    </testcase>
+    <testcase classname=" GET_PRODUCTS_SUCCESS" name=" GET_PRODUCTS_SUCCESS" time="0.003">
+    </testcase>
+    <testcase classname=" GET_PRODUCTS_ERROR" name=" GET_PRODUCTS_ERROR" time="0.002">
+    </testcase>
+  </testsuite>
+</testsuites>
