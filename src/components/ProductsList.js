@@ -1,8 +1,8 @@
-import React from 'react';
-import LoadingSpinner from './LoadingSpinner';
-import Error from './Error';
-import { useProductContext } from '../context/products_context';
-import Product from './Product';
+import React from "react";
+import LoadingSpinner from "./LoadingSpinner";
+import Error from "./Error";
+import { useProductContext } from "../context/products_context";
+import Product from "./Product";
 const ProductsList = () => {
   const {
     isLoading_products: loading,
