@@ -7,7 +7,7 @@ export const formatPrice = (price) => {
 export function createCookie(name, value, minutes) {
   let expires;
   if (minutes) {
-    var date = new Date();
+    let date = new Date();
     date.setTime(date.getTime() + minutes * 60 * 1000);
     expires = "; expires=" + date.toGMTString();
   } else {

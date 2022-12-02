@@ -101,7 +101,7 @@ export const productReducer = (state, action) => {
             return item;
           }
         });
-        createCookie("cart", JSON.stringify([...tempCart]), 300);
+        createCookie("cart", JSON.stringify([...tempCart]), 60);
         return { ...state, cart_items: tempCart };
       } else {
         const newItem = {
@@ -119,7 +119,7 @@ export const productReducer = (state, action) => {
           ram,
           count: 1,
         };
-        createCookie("cart", JSON.stringify([...state.cart_items, newItem]), 300);
+        createCookie("cart", JSON.stringify([...state.cart_items, newItem]), 60);
         return { ...state, cart_items: [...state.cart_items, newItem] };
       }
     case GET_CART_ITEMS_AMOUNT:
