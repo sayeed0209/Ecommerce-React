@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useReducer } from 'react';
-import axios from 'axios';
-import { getCartItems } from '../utils/helper';
-import { productReducer } from '../reducers/productReducer';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import React, { useContext, useEffect, useReducer } from "react";
+import axios from "axios";
+import { getCartItems } from "../utils/helper";
+import { productReducer } from "../reducers/productReducer";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import {
   GET_PRODUCTS_BEGIN,
   GET_PRODUCTS_SUCCESS,
@@ -13,13 +13,14 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
   UPDATE_FILTERS,
   CART_ITEMS,
+  GET_CART_ITEMS_AMOUNT,
   LOAD_PRODUCTS,
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
   API_URL,
   API_URL_CART,
-} from '../utils/action.js';
-const initialState = {
+} from "../utils/action.js";
+export const initialState = {
   isLoading_products: false,
   products_error: false,
   products_data: [],
@@ -27,15 +28,19 @@ const initialState = {
   single_products_loading: false,
   single_products_error: false,
   single_products_data: {},
-  searchTerm: '',
-  searchParam: ['brand', 'model', 'price'],
+  searchTerm: "",
+  searchParam: ["brand", "model", "price"],
   cart_items: getCartItems(),
+  cart_items_amount: 0,
 };
 const MySwal = withReactContent(Swal);
-const ProductsContext = React.createContext();
+export const ProductsContext = React.createContext();
+
 export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
+
   //   !All PRODUCTS
+
   const fetchProducts = async (url) => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
@@ -77,12 +82,14 @@ export const ProductsProvider = ({ children }) => {
   useEffect(() => {
     dispatch({ type: FILTER_PRODUCTS });
   }, [state.searchTerm, state.products_data]);
-
-  const cartHandler = (id, selectedColor, selectedStorage) => {
+  useEffect(() => {
+    dispatch({ type: GET_CART_ITEMS_AMOUNT });
+  }, [state.cart_items]);
+  const cartHandler = (id, selectedColor, selectedStorage, cartObj, color, storage) => {
     fetch(API_URL_CART, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         id: id,
@@ -96,7 +103,7 @@ export const ProductsProvider = ({ children }) => {
           MySwal.fire({
             title: <strong>Great job!</strong>,
             html: <i>Item Added to the cart!</i>,
-            icon: 'success',
+            icon: "success",
           });
           dispatch({
             type: CART_ITEMS,
@@ -104,6 +111,9 @@ export const ProductsProvider = ({ children }) => {
               id: id,
               colorCode: selectedColor,
               storageCode: selectedStorage,
+              color,
+              storage,
+              cartObj,
             },
           });
         }
@@ -118,12 +128,14 @@ export const ProductsProvider = ({ children }) => {
         handleFilter,
         clearFilter,
         cartHandler,
+        fetchProducts,
       }}
     >
       {children}
     </ProductsContext.Provider>
   );
 };
+
 export const useProductContext = () => {
   return useContext(ProductsContext);
 };

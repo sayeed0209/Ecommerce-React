@@ -7,11 +7,12 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
   UPDATE_FILTERS,
   CART_ITEMS,
+  GET_CART_ITEMS_AMOUNT,
   LOAD_PRODUCTS,
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
-} from '../utils/action.js';
-import { createCookie } from '../utils/helper';
+} from "../utils/action.js";
+import { createCookie } from "../utils/helper";
 export const productReducer = (state, action) => {
   switch (action.type) {
     // * all products case starts here
@@ -65,12 +66,7 @@ export const productReducer = (state, action) => {
       if (searchTerm) {
         tempProduct = tempProduct.filter((product) => {
           return searchParam.some((newItem) => {
-            return (
-              product[newItem]
-                .toString()
-                .toLowerCase()
-                .indexOf(searchTerm.toLowerCase()) > -1
-            );
+            return product[newItem].toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
           });
         });
       }
@@ -80,15 +76,59 @@ export const productReducer = (state, action) => {
     // * Clear filter
 
     case CLEAR_FILTERS:
-      return { ...state, searchTerm: '' };
+      return { ...state, searchTerm: "" };
 
     case CART_ITEMS:
-      createCookie(
-        'cart',
-        JSON.stringify([...state.cart_items, action.payload]),
-        60
+      const { cart_items } = state;
+      const {
+        id,
+        storageCode,
+        colorCode,
+        color,
+        storage,
+        cartObj: { model, brand, imgUrl, price, weight, cpu, ram },
+      } = action.payload;
+      const tempItem = state.cart_items.find(
+        (item) =>
+          item.id === id && item.storageCode === storageCode && item.colorCode === colorCode,
       );
-      return { ...state, cart_items: [...state.cart_items, action.payload] };
+      if (tempItem) {
+        const tempCart = cart_items.map((item) => {
+          if (item.id === id && item.storageCode === storageCode && item.colorCode === colorCode) {
+            let count = item.count + 1;
+            return { ...item, count: count };
+          } else {
+            return item;
+          }
+        });
+        createCookie("cart", JSON.stringify([...tempCart]), 300);
+        return { ...state, cart_items: tempCart };
+      } else {
+        const newItem = {
+          id,
+          storageCode,
+          colorCode,
+          color,
+          storage,
+          model,
+          brand,
+          imgUrl,
+          price,
+          weight,
+          cpu,
+          ram,
+          count: 1,
+        };
+        createCookie("cart", JSON.stringify([...state.cart_items, newItem]), 300);
+        return { ...state, cart_items: [...state.cart_items, newItem] };
+      }
+    case GET_CART_ITEMS_AMOUNT:
+      const totalItems = state.cart_items.reduce((acc, count) => {
+        acc = acc + count.count;
+        return acc;
+      }, 0);
+      return { ...state, cart_items_amount: totalItems };
+
     default:
       return state;
     // throw new Error(`No Matching "${action.type}" - action type`);
