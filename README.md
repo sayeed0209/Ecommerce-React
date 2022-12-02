@@ -21,13 +21,14 @@ The project was developed in conjunction with React.js, including Context, Hooks
 - Axios
 - External API
 - Swal Alert
+- style components 
 
 ### Getting started
 
 ---
 
 - fork the project and clone it locally.
-- In the project directory, ou can follow the steps below to download the dependencies:
+- In the project directory, you can follow the steps below to download the dependencies:
 
   `npm install `
 
@@ -39,7 +40,7 @@ The project was developed in conjunction with React.js, including Context, Hooks
 
 ---
 
-You can list the products by their model, additionally you can clear filter by clicking clear filter or just with backspaces.You can add product by your chosen color and storage.
+You can list the products by their model, brand, price, additionally you can clear filter by clicking clear filter or just with backspaces.You can add product by your chosen color and storage.
 
 ### Roadmap
 
