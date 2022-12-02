@@ -1,7 +1,7 @@
-import React from 'react';
-import HeroPage from '../components/PageHero';
-import ProductsList from '../components/ProductsList';
-import Filters from '../components/Filters';
+import React from "react";
+import HeroPage from "../components/PageHero";
+import ProductsList from "../components/ProductsList";
+import Filters from "../components/Filters";
 const Products = () => {
   return (
     <>

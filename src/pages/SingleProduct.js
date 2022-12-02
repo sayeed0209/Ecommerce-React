@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useProductContext } from '../context/products_context';
-import { formatPrice } from '../utils/helper';
-import PageHero from '../components/PageHero';
-import styled from 'styled-components';
-import LoadingSpinner from '../components/LoadingSpinner';
-import Error from '../components/Error';
-import { API_URL } from '../utils/action.js';
-import AddToCart from '../components/AddToCart';
+import React, { useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useProductContext } from "../context/products_context";
+import { formatPrice } from "../utils/helper";
+import PageHero from "../components/PageHero";
+import styled from "styled-components";
+import LoadingSpinner from "../components/LoadingSpinner";
+import Error from "../components/Error";
+import { API_URL } from "../utils/action.js";
+import AddToCart from "../components/AddToCart";
 const SingleProduct = () => {
   const {
     fetchSingleProducts,
@@ -19,6 +19,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     fetchSingleProducts(`${API_URL}/${id}`);
+    // eslint-disable-next-line
   }, [id]);
 
   if (loading) {
